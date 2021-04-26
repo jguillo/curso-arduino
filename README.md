@@ -9,8 +9,10 @@ En el taller se monta y se programa un kit Smart Car de Arduino, que se controla
   - *bt_test*: script de test del módulo bluetooth
   - *display_test*: script de test de la pantalla LED de 7 segmentos
   - *motor_test*: script de test de movimiento del Smart Car
-  - *sonar_test*: script de test del módulo sensor de distancia por ultrasonidos. Muestra la distancia en el monitor serie.
-  - *sonar_display_test*: script de test del módulo sensor de distancia por ultrasonidos. Muestra la distancia en la pantalla LED.
+  - *sonar_test*: script de test del módulo sensor de distancia por ultrasonidos.  
+    Muestra la distancia en el monitor serie.
+  - *sonar_display_test*: script de test del módulo sensor de distancia por ultrasonidos.  
+    Muestra la distancia en la pantalla LED.
   - *taller_robot*: script con el programa completo
   - *libraries*: Librerías utilizadas por los scripts
     - DigitalTube: Librería de control de displays de 7 segmentos TM1637 (by Fred.Chu)
