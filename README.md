@@ -2,7 +2,7 @@
 
 Este repositorio contiene archivos de apoyo para un taller de robótica con Arduino.
 
-En el taller se monta y se programa un kit Smart Car de Arduino, que se controla por bluetooth con la app [Arduino Bluetooth RC Car](https://play.google.com/store/apps/details?id=braulio.calle.bluetoothRCcontroller) de Android. 
+En el taller se monta y se programa un kit [Smart Car de Arduino](https://es.aliexpress.com/item/32795674146.html), que se controla por bluetooth con la app [Arduino Bluetooth RC Car](https://play.google.com/store/apps/details?id=braulio.calle.bluetoothRCcontroller) de Android. 
 
 - La carpeta **manuales** contiene los manuales del kit en PDF.
 - La carpeta **arduino** contiene los scripts y librerías necesarios para programar el kit
