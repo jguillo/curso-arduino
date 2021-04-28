@@ -1,26 +1,27 @@
+/***********************************************************************************
+ * Script de test para el módulo bluetooth.
+ * Permite enviar comandos AT desde el monitor serie.
+ * IMPORTANTE: Para que funcionen bien los comandos AT, configurar el monitor Serial
+ * para que incluya ámbos caracteres NL+CR como fin de línea
+ ***********************************************************************************/
+
+// Librería
 #include <SoftwareSerial.h>
 
-/***********************************************************************************
- * IMPORTANTE: Para que funcionen bien los comandos AT, configurar el monitor Serial
- * paara que incluya ámbos caracteres NL+CR como fin de línea
- ***********************************************************************************/
+// Pines
 #define BLUETOOTH_RX 2
 #define BLUETOOTH_TX 4
 
+// Módulo bluetooth
 SoftwareSerial bluetooth(BLUETOOTH_RX, BLUETOOTH_TX); // RX, TX
 
-#define INITIALIZING 0
-#define READY        1
-#define INQUIRING    2
-#define PAIRABLE     3
-#define CONNECTING   4
-#define CONNECTED    5
-
-int bt_status = INITIALIZING;
 
 void setup() {
+  // Configura comunicación serie y bluetooth
   Serial.begin(9600);
   bluetooth.begin(9600);
+
+  // Espera a que el módulo bluetooth esté en modo pairing
   Serial.println("Iniciado");
   bt_waitPairable();
   Serial.println("");
@@ -35,14 +36,28 @@ void setup() {
 }
 
 void loop() {
+  // Lee caracteres del módulo bluetooth y los escribe en el monitor serie
   if (bluetooth.available())
     Serial.write(bluetooth.read());
+  
+  // Lee caracteres del monitor serie y los envía al módulo bluetooth 
   if (Serial.available()) 
     bluetooth.write(Serial.read());
 }
 
+
+/** ESTADOS BLUETOOTH **/
+#define INITIALIZING 0
+#define READY        1
+#define INQUIRING    2
+#define PAIRABLE     3
+#define CONNECTING   4
+#define CONNECTED    5
+
+int bt_status = INITIALIZING;
+
+// Esperar a que el módulo bluetooth esté en modo pairing
 void bt_waitPairable(){
-  char recvChar;
   while(bt_status != PAIRABLE){
     if(bluetooth.available()){
       String recvString = bt_readLine();
@@ -69,8 +84,8 @@ void bt_waitPairable(){
 
 }
 
+// Esperar a que haya conexión bluetooth
 void bt_waitConnected(){
-  char recvChar;
   while(bt_status != CONNECTED){
     if(bluetooth.available()){
       String recvString = bt_readLine();
@@ -98,15 +113,16 @@ void bt_waitConnected(){
   }
 }
 
+// Descartar comandos bluetooth pendientes
 void bt_clearBuffer(){
   char recvChar;
   while(bluetooth.available())
     recvChar = bluetooth.read();
 }
 
+// Enviar comando AT y obtener la respuesta
 String bt_writeAT(String cmd){
-  bluetooth.print(cmd);
-  bluetooth.print("\r\n");
+  bluetooth.println(cmd);
   delay(500);
   if(bluetooth.available() > 1) {
     return bt_readLine();
@@ -114,12 +130,14 @@ String bt_writeAT(String cmd){
   else return "";
 }
 
+// Comprobar funcionamiento de comandos AT
 bool bt_testAT(){
   bt_clearBuffer();
   String res = bt_writeAT("AT");
   return res == "OK";
 }
 
+// Leer línea de texto del bluetooth (respuesta AT)
 String bt_readLine() {
   char recvChar = ' ';
   String recvString;
