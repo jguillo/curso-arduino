@@ -6,9 +6,9 @@ En el taller se monta y se programa un kit [Smart Car de Arduino](https://es.ali
 
 - El documento **Taller de robótica.pdf** contiene las diapositivas explicativas del taller. 
 - La carpeta **manuales** contiene los manuales del kit en PDF.
-  - *4WD Bluetooth Hardware Installation Tutorial.pdf* Manual de montaje del kit
-  - *SPP-CA Bluetooth module AT commands.pdf* Manual de comandos AT para configurar el módulo Bluetooth
-  - *Wiring guide.pdf* Tabla de guía rápida de conexión de los distintos módulos a los pines del controlador Arduino
+  - *4WD Bluetooth Hardware Installation Tutorial.pdf*: Manual de montaje del kit
+  - *SPP-CA Bluetooth module AT commands.pdf*: Manual de comandos AT para configurar el módulo Bluetooth
+  - *Wiring guide.pdf*: Tabla de guía rápida de conexión de los distintos módulos a los pines del controlador Arduino
 - La carpeta **arduino** contiene los scripts y librerías necesarios para programar el kit
   - *bt_test*: script de test del módulo bluetooth
   - *display_test*: script de test de la pantalla LED de 7 segmentos
